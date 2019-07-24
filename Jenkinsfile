@@ -34,7 +34,7 @@ def getImageTag(String currentBranch)
 pipeline {
     agent any
     environment {
-    registry = "venkatnamburi/webapp"
+    registry = "manikantagprec/test"
     registryCredential = 'docker_login'
     GIT_COMMIT_SHORT_HASH = sh (script: "git rev-parse --short HEAD", returnStdout: true)
     }
@@ -58,7 +58,7 @@ pipeline {
             sh '''
               docker rmi -f $(docker images -f 'dangling=true' -q) || true
              docker rmi -f $(docker images | sed 1,2d | awk '{print $3}') || true
-             docker rmi -f venkatnamburi/webapp:stable
+             docker rmi -f manikantagprec/test:stable
            
             '''
            }
