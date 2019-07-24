@@ -6,6 +6,7 @@ RUN mkdir /opt/tomcat/
 
 WORKDIR /opt/tomcat
 #RUN curl -O http://159.65.154.237/tomcat/tomcat-8/v8.5.43/bin/apache-tomcat-8.5.43.tar.gz
+RUN pwd
 RUN tar xvf apache*.tar.gz
 RUN mv apache-tomcat-8.5.43/* /opt/tomcat/.
 #RUN set -x \
