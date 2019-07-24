@@ -39,7 +39,7 @@ pipeline {
     GIT_COMMIT_SHORT_HASH = sh (script: "git rev-parse --short HEAD", returnStdout: true)
     }
     tools {
-        maven 'M3'
+        maven 'M2_HOME'
     }
     stages {
         stage('Build') {
