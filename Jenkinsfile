@@ -23,7 +23,7 @@ pipeline {
                  //sh 'ssh ec2-user@ && sudo -i && helm upgrade first ./firstrepo && kubectl get all -o wide'
                   // sshCommand command: "ls -lrt"
                  sh '''
-                       ansibl-playbook -i invenotry file x.yml"
+                       ansible -m ping localhost"
                     '''
              }
          }
