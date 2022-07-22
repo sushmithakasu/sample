@@ -10,33 +10,18 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-         stage('Archiveartifact') {
+        
+        stage ('Copy .war file to tomcat') {
              steps {
-               // archiveArtifacts artifacts: 'target/*.war', onlyIfSuccessful: true
-                  archiveArtifacts artifacts: 'target/*.war'
-             }
-         }
-                 stage ('Copy .war file to tomcat') {
-             steps {
-                 echo ''
-                 // bat '''copy target\\*.war C:\\apache-tomcat-8.5.42-windows-x64\\apache-tomcat-8.5.42\\webapps\\'''
-                 //sh 'ssh ec2-user@ && sudo -i && helm upgrade first ./firstrepo && kubectl get all -o wide'
-                  // sshCommand command: "ls -lrt"
                  sh '''
-                       cd /etc/ansible
-                       ansible-playbook deploy.yml
+                        scp -i /home/ec2-user/test.pem WebApp.war ec2-user@54.88.179.127:/home/ec2-user
                     '''
              }
          }
         stage ('Restarting application') {
-             steps {
-                 echo ''
-                 // bat '''copy target\\*.war C:\\apache-tomcat-8.5.42-windows-x64\\apache-tomcat-8.5.42\\webapps\\'''
-                 //sh 'ssh ec2-user@ && sudo -i && helm upgrade first ./firstrepo && kubectl get all -o wide'
-                  // sshCommand command: "ls -lrt"
+            steps {
                  sh '''
-                       cd /etc/ansible
-                       ansible-playbook deploy1.yml
+                      ssh i /home/ec2-user/test.pem WebApp.war ec2-user@54.88.179.127 'sudo cp /home/ec2-user/WebApp.war /opt/tomcat9/webapps
                     '''
              }
          }
