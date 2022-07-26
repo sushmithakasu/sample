@@ -21,7 +21,7 @@ pipeline {
         stage ('Restarting application') {
             steps {
                  sh '''
-                      ssh i /home/ec2-user/test.pem ec2-user@54.88.179.127 'sudo cp /home/ec2-user/WebApp.war /opt/tomcat9/webapps
+                      ssh -i /home/ec2-user/test.pem ec2-user@54.88.179.127 'sudo cp /home/ec2-user/WebApp.war /opt/tomcat9/webapps
                     '''
              }
          }
