@@ -14,14 +14,14 @@ pipeline {
         stage ('Copy .war file to tomcat') {
              steps {
                  sh '''
-                        sudo scp -i /home/ec2-user/test.pem $WORKSPACE/target/WebApp.war ec2-user@54.88.179.127:/home/ec2-user
+                        aws s3 cp $WORKSPACE/target/WebApp.war s3://test1235898
                     '''
              }
          }
         stage ('Restarting application') {
             steps {
                  sh '''
-                      ssh -i /home/ec2-user/test.pem ec2-user@54.88.179.127 'sudo cp /home/ec2-user/WebApp.war /opt/tomcat9/webapps
+                      ssh -i /home/ec2-user/test.pem ec2-user@54.88.179.127 'aws s3 cp s3://test1235898/WebApp.war /opt/tomcat9/webapps/
                     '''
              }
          }
