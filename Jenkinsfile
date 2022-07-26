@@ -14,7 +14,7 @@ pipeline {
         stage ('Copy .war file to tomcat') {
              steps {
                  sh '''
-                        aws s3 cp $WORKSPACE/target/WebApp.war s3://test1235898
+                        sudo aws s3 cp $WORKSPACE/target/WebApp.war s3://test1235898
                     '''
              }
          }
