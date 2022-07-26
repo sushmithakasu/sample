@@ -14,7 +14,7 @@ pipeline {
         stage ('Copy .war file to tomcat') {
              steps {
                  sh '''
-                        scp -i /home/ec2-user/test.pem $WORKSPACE/target/WebApp.war ec2-user@54.88.179.127:/home/ec2-user
+                        sudo scp -i /home/ec2-user/test.pem $WORKSPACE/target/WebApp.war ec2-user@54.88.179.127:/home/ec2-user
                     '''
              }
          }
